@@ -5,6 +5,15 @@ import { v4 } from "uuid";
 import { rateLimit } from "express-rate-limit";
 import abc from "./test-routes";
 
+/**
+ * This solution will add custom middleware at start of route handler, if there
+ * are exist a lot of middlewares before route handler, these middlewares will
+ * run first. So if you want to check specific route and its rate limit
+ * middleware instance running first, you need filter req path and check its
+ * route matching(using regex of express layer) then select one rate limit
+ * instance which match the req path from cache store
+ */
+
 //For env File
 dotenv.config();
 
